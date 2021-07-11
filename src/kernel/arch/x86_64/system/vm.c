@@ -1,5 +1,6 @@
 #include <vm.h>
 #include <video.h>
+#include <stdbool.h>
 
 void page_fault_handler(uint64_t error_code){
     _printStr("Welcome to #PF world - Not ready yet... \n");
@@ -18,10 +19,16 @@ void page_fault_handler(uint64_t error_code){
     _printStringAndNumber("pd: ", pd);
     _printStringAndNumber("pdpr: ", pdpr);
     _printStringAndNumber("pml4: ", pml4);
+    if(_should_allocate(cr2_content)){
+        _printStringAndNumber("Should allocate address: ", cr2_content); 
+    }
     asm("hlt");
 
 }
 
+bool _should_allocate(uint64_t address){
+    return true;
+}
 
 
 void initialize_vm(){

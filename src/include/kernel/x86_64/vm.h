@@ -2,6 +2,7 @@
 #define _VM_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define PML4_ENTRY(address)((address>>39) & 0x1ff)
 #define PDPR_ENTRY(address)((address>>30) & 0x1ff)
@@ -20,5 +21,5 @@ void page_fault_handler(uint64_t);
 
 void initialize_vm();
 
-
+bool _should_allocate(uint64_t);
 #endif
